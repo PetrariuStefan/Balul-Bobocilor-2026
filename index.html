@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Balul Bobocilor · FII 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   BALUL BOBOCILOR · FII 2026 — "The Clubhouse"
+   Navy #2C2118 · saddle brown · camel · cream
+   Display: Libre Caslon Display   UI: Jost
+   Signature: the regimental club stripe
+   ═══════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1E1710;       /* deepest — footer */
+  --espresso:#2C2118;  /* primary dark surface */
+  --bark:#3D2E21;      /* raised dark */
+  --saddle:#7A5334;
+  --camel:#B58C5C;
+  --tan:#D9C3A3;
+  --cream:#EFE5D4;
+  --ivory:#FBF7F0;
+  --brass:#9A7442;
+  --line:#DDD1BE;
+
+  --serif:'Libre Caslon Display','Big Caslon','Hoefler Text','Times New Roman',Georgia,serif;
+  --sans:'Jost',Futura,'Century Gothic','Avenir Next','Trebuchet MS',sans-serif;
+
+  --pad:20px;
+
+  --maxw:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ivory);color:var(--espresso);
+  font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--camel);outline-offset:3px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+@media (min-width:620px){ :root{--pad:24px} }
+.wrap--narrow{max-width:860px}
+
+/* ─────────── the club stripe (signature) ─────────── */
+.stripe{
+  height:7px;
+  background:linear-gradient(180deg,
+    var(--saddle) 0 30%,
+    var(--camel)  30% 52%,
+    var(--cream)  52% 60%,
+    var(--espresso)   60% 100%);
+}
+.stripe--thin{height:5px}
+
+/* ─────────── type helpers ─────────── */
+.kicker{
+  font-family:var(--sans);font-weight:500;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--saddle);
+}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em}
+.h-xl{font-size:clamp(42px,7.4vw,86px)}
+.h-lg{font-size:clamp(30px,4.6vw,52px)}
+.h-md{font-size:clamp(23px,2.7vw,32px)}
+.lede{font-size:clamp(16px,1.55vw,19px);line-height:1.7;font-weight:300}
+
+/* ─────────── header ─────────── */
+.hd{position:sticky;top:0;z-index:60;background:var(--ivory);border-bottom:1px solid var(--line)}
+.hd__row{display:flex;align-items:center;gap:11px;min-height:58px}
+@media (min-width:620px){ .hd__row{gap:30px} }
+
+.hd__nav{flex:1 1 auto;min-width:0}
+.hd__nav ul{
+  display:flex;align-items:center;gap:10px;list-style:none;
+  overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.hd__nav ul::-webkit-scrollbar{display:none}
+@media (min-width:620px){ .hd__nav ul{gap:34px} }
+.navlink{
+  display:block;padding:19px 1px 17px;position:relative;white-space:nowrap;
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:400;color:var(--espresso);
+}
+@media (min-width:620px){ .navlink{font-size:12px;letter-spacing:.2em} }
+.navlink::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--saddle);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.8,.3,1);
+}
+.navlink:hover::after,.navlink.is-on::after{transform:scaleX(1)}
+.navlink.is-on{font-weight:500}
+
+.hd__mark{display:block;color:var(--espresso);height:26px;flex:0 0 auto;transition:opacity .25s}
+.hd__mark:hover{opacity:.62}
+@media (min-width:620px){ .hd__mark{height:42px} }
+.hd__mark svg{height:100%;width:auto;display:block}
+
+.hd__r{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+@media (min-width:620px){ .hd__r{gap:18px} }
+
+.iconbtn{
+  width:32px;height:32px;display:grid;place-items:center;color:var(--espresso);
+  border-radius:50%;transition:background .2s;flex:0 0 auto;
+}
+.iconbtn:hover{background:#0000000d}
+@media (min-width:620px){ .iconbtn{width:36px;height:36px} }
+.iconbtn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.3}
+
+/* ─────────── pages ─────────── */
+.page{display:none}
+.page.is-on{display:block}
+
+/* ─────────── hero ─────────── */
+.hero{
+  position:relative;background:var(--espresso);color:var(--cream);overflow:hidden;
+  min-height:clamp(500px,74vh,760px);display:grid;align-items:center;
+}
+.hero__bg{position:absolute;inset:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover}
+.hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,#2C2118cc,#2C21188c 45%,#2C2118d9);
+}
+.hero__tex{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(115deg,#ffffff07 0 2px,transparent 2px 9px),
+    radial-gradient(90% 70% at 50% 30%,#3D2E21 0%,#2C2118 60%,#1E1710 100%);
+}
+.hero__wm{
+  position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
+  width:min(120%,860px);color:#EFE5D4;opacity:.028;pointer-events:none;
+}
+.hero__in{position:relative;text-align:center;padding:clamp(64px,9vw,80px) var(--pad) clamp(58px,8vw,74px)}
+.hero__lock{width:min(72%,300px);margin:0 auto clamp(24px,3.5vw,34px);color:var(--cream);opacity:.95}
+.hero__lock svg{width:100%;height:auto;display:block}
+.hero__theme{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 6px;
+}
+.hero__theme i{display:block;width:clamp(28px,7vw,58px);height:1px;background:#D9C3A359}
+.hero__theme span{
+  font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--camel);white-space:nowrap;
+}
+.hero__lock{width:min(84%,420px);margin:0 auto 30px;color:var(--cream);opacity:.96}
+.hero h1{color:var(--ivory);max-width:19ch;margin:0 auto;letter-spacing:.005em}
+@media (max-width:640px){ .hero h1 br{display:none} }
+.hero__sub{max-width:50ch;margin:20px auto 0;color:#E8DCC8cc}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:36px}
+
+.btn{
+  display:inline-block;padding:16px 34px;font-size:12px;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:500;transition:.25s;border:1px solid transparent;
+}
+.btn--solid{background:var(--cream);color:var(--espresso)}
+.btn--solid:hover{background:var(--ivory)}
+.btn--line{border-color:#EFE5D459;color:var(--cream)}
+.btn--line:hover{border-color:var(--cream);background:#EFE5D412}
+.btn--espresso{background:var(--espresso);color:var(--cream)}
+.btn--espresso:hover{background:var(--bark)}
+.btn--espressoline{border-color:var(--espresso);color:var(--espresso)}
+.btn--espressoline:hover{background:var(--espresso);color:var(--cream)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.btn--wide{width:100%;text-align:center}
+
+/* ─────────── sections ─────────── */
+.sec{padding:clamp(56px,8vw,104px) 0}
+.sec--cream{background:var(--cream)}
+.sec--espresso{background:var(--espresso);color:var(--cream)}
+.sec--espresso .kicker{color:var(--camel)}
+.sec__head{max-width:640px;margin-bottom:clamp(32px,4vw,54px)}
+.sec__head .kicker{display:block;margin-bottom:14px}
+.sec__head p{margin-top:16px;color:#55493B}
+.sec--espresso .sec__head p{color:#E8DCC8b3}
+
+/* programme */
+.prog{display:grid;gap:1px;background:var(--line)}
+@media (min-width:800px){ .prog{grid-template-columns:repeat(3,1fr)} }
+.sec--espresso .prog{background:#ffffff1f}
+.prog__i{background:var(--cream);padding:26px 24px 28px}
+.sec--espresso .prog__i{background:var(--espresso)}
+.prog__t{font-family:var(--serif);font-size:30px;color:var(--saddle);line-height:1}
+.sec--espresso .prog__t{color:var(--camel)}
+.prog__h{font-family:var(--serif);font-size:21px;margin-top:12px}
+.prog__p{font-size:14.5px;color:#5E5344;margin-top:6px}
+.sec--espresso .prog__p{color:#E8DCC899}
+.prog__i--pad{display:none}
+@media (min-width:800px){ .prog__i--pad{display:block} }
+
+/* editorial cards */
+.cards{display:grid;gap:26px}
+@media (min-width:760px){ .cards{grid-template-columns:repeat(3,1fr)} }
+.card__img{
+  position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--espresso);
+}
+.card__img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.3,1)}
+a.card:hover .card__img img,.card:hover .card__img img{transform:scale(1.045)}
+.ph{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  background:
+    repeating-linear-gradient(115deg,#ffffff08 0 2px,transparent 2px 10px),
+    linear-gradient(160deg,var(--bark),var(--ink));
+  color:#D9C3A359;
+}
+.ph b{display:block;font-family:var(--serif);font-size:30px;color:#D9C3A38c;font-weight:400}
+.ph i{display:block;font-style:normal;font-size:10px;letter-spacing:.24em;text-transform:uppercase;margin-top:8px}
+.card__meta{padding-top:16px}
+.card__y{font-family:var(--serif);font-size:22px}
+.card__t{font-size:13.5px;color:#7C6E5C;letter-spacing:.03em}
+.sec--espresso .card__t{color:#E8DCC88c}
+
+/* ─────────── archive page ─────────── */
+.ed{border-top:1px solid var(--line);padding:clamp(34px,5vw,58px) 0}
+.ed:first-child{border-top:0;padding-top:0}
+/* year and theme share a baseline; the venue takes its own row, so its length
+   can never push the theme sideways */
+.ed__head{
+  display:grid;grid-template-columns:auto 1fr;align-items:baseline;
+  column-gap:clamp(14px,1.8vw,22px);margin-bottom:26px;
+}
+.ed__y{grid-area:1/1;font-family:var(--serif);font-size:clamp(44px,7vw,76px);line-height:.85;color:var(--espresso)}
+.ed__t{grid-area:1/2;min-width:0;font-family:var(--serif);font-size:clamp(20px,2.6vw,29px)}
+.ed__m{
+  grid-area:2/1/3/-1;margin-top:10px;
+  font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--saddle);
+}
+.ed__g{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:760px){ .ed__g{grid-template-columns:1.6fr 1fr 1fr} }
+.ed__g .shot{aspect-ratio:4/5}
+.ed__g .shot:first-child{grid-column:1/-1;aspect-ratio:16/9}
+@media (min-width:760px){
+  .ed__g{grid-auto-rows:min(42vw,430px)}
+  .ed__g .shot,.ed__g .shot:first-child{grid-column:auto;aspect-ratio:auto;height:100%}
+}
+.shot{position:relative;overflow:hidden;background:var(--espresso);cursor:pointer}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.3,1)}
+.shot:hover img{transform:scale(1.05)}
+.gap{
+  border-top:1px solid var(--line);padding:34px 0;display:grid;gap:6px;
+  grid-template-columns:200px 1fr;align-items:baseline;
+}
+.gap b{font-family:var(--serif);font-size:clamp(46px,7vw,76px);line-height:.85;color:var(--line);font-weight:400}
+.gap p{color:#8A7A66;font-size:15.5px}
+
+/* ─────────── quiz ─────────── */
+.sealed{text-align:center;padding:clamp(56px,8vw,104px) 0 clamp(48px,6vw,80px)}
+.sealed__m{width:118px;margin:0 auto 34px;color:var(--camel);opacity:.85}
+.sealed p{max-width:46ch;margin:20px auto 0;color:#E8DCC8b3}
+
+/* ─────────── tickets ─────────── */
+.tiers{display:grid;gap:20px}
+.tier{
+  position:relative;display:flex;flex-wrap:wrap;align-items:stretch;
+  background:var(--ivory);border:1px solid var(--line);
+  box-shadow:0 20px 44px -34px #2C211899;
+}
+.tier__ribbon{
+  width:13px;flex:0 0 13px;
+  background:linear-gradient(90deg,
+    var(--espresso) 0 34%, var(--cream) 34% 42%, var(--camel) 42% 66%, var(--saddle) 66% 100%);
+}
+.tier__main{flex:1 1 260px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
+.tier__flag{
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--saddle);
+  margin-bottom:9px;
+}
+.tier__n{font-family:var(--serif);font-size:clamp(26px,3.4vw,34px);line-height:1}
+.tier__left{margin-top:9px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A66}
+
+.tier__buy{
+  flex:0 0 auto;display:flex;align-items:center;gap:clamp(18px,3vw,34px);
+  padding:22px 28px;border-left:1px dashed #C9B79B;background:#F2EADC;
+}
+.tier__p{font-family:var(--serif);font-size:clamp(34px,4.4vw,46px);line-height:1;white-space:nowrap}
+.tier__p sup{
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  position:relative;top:-1.7em;color:var(--saddle);
+}
+.qtyrow{display:flex;gap:10px;align-items:stretch}
+.qty{display:flex;align-items:center;border:1px solid var(--line);background:#fff}
+.qty button{width:38px;color:var(--saddle);font-size:17px;font-weight:300}
+.qty button:hover{background:var(--cream)}
+.qty span{width:30px;text-align:center;font-size:15px}
+.qtyrow .btn{padding-left:26px;padding-right:26px}
+
+@media (max-width:760px){
+  .tier__ribbon{
+    flex:1 1 100%;width:auto;height:8px;
+    background:linear-gradient(180deg,
+      var(--espresso) 0 34%, var(--cream) 34% 42%, var(--camel) 42% 66%, var(--saddle) 66% 100%);
+  }
+  .tier__buy{
+    flex:1 1 100%;border-left:0;border-top:1px dashed #C9B79B;
+    justify-content:space-between;padding:20px 28px 22px;
+  }
+  .tier__main{flex:1 1 100%;padding-bottom:20px}
+}
+@media (max-width:430px){
+  .tier__buy{flex-wrap:wrap;gap:16px}
+  .qtyrow{flex:1 1 100%}
+  .qtyrow .btn{flex:1}
+}
+
+/* ticket stub (owned) */
+.stub{display:flex;background:var(--cream);border:1px solid var(--line);margin-bottom:16px}
+.stub__stripe{
+  width:13px;flex:0 0 13px;
+  background:linear-gradient(90deg,
+    var(--espresso) 0 34%, var(--cream) 34% 42%, var(--camel) 42% 66%, var(--saddle) 66% 100%);
+}
+.stub__m{flex:1;padding:20px 22px}
+.stub__k{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--saddle)}
+.stub__n{font-family:var(--serif);font-size:24px;margin-top:6px}
+.stub__d{font-size:14.5px;color:#5E5344;margin-top:4px}
+.stub__r{
+  flex:0 0 92px;border-left:1px dashed #C0AE92;display:grid;place-items:center;
+  padding:14px 6px;text-align:center;
+}
+.stub__no{font-size:10px;letter-spacing:.16em;color:var(--saddle);line-height:1.9}
+.stub__no b{display:block;font-family:var(--serif);font-size:19px;letter-spacing:.02em;color:var(--espresso);font-weight:400}
+
+/* ─────────── account ─────────── */
+.acct{display:grid;gap:44px}
+@media (min-width:900px){ .acct{grid-template-columns:minmax(300px,390px) 1fr;gap:60px;align-items:start} }
+
+.idcard{
+  position:relative;overflow:hidden;color:var(--cream);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cg fill='none' stroke='%23B58C5C' stroke-width='1.6' stroke-linecap='square' opacity='.42'%3E%3Cpath d='M-9 9 L0 0 L9 9 L18 0 L27 9 L36 0 L45 9'/%3E%3Cpath d='M-9 26 L0 17 L9 26 L18 17 L27 26 L36 17 L45 26'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(148deg,#40301F 0%,#2C2118 42%,#1A1309 100%);
+  box-shadow:0 26px 50px -28px #000, 0 1px 0 #ffffff14 inset;
+}
+.idcard::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 22% 8%,#ffffff14,transparent 58%);
+}
+.idcard__in{
+  position:relative;z-index:1;margin:11px;padding:17px 19px;min-height:214px;
+  border:1px solid #D9C3A347;
+  background:linear-gradient(150deg,#2C2118bf,#1A1309d9);
+  display:flex;flex-direction:column;
+}
+.idcard__hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.idcard__d{
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid #D9C3A366;font-family:var(--serif);font-size:15px;color:var(--tan);
+}
+.idcard__mk{display:block;width:52px;color:var(--camel);opacity:.75}
+.idcard__mk svg{width:100%;height:auto;display:block}
+.idcard h3{font-size:clamp(21px,2.4vw,25px);line-height:1.1}
+.idcard__s{
+  margin-top:5px;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--camel);
+}
+.idcard__rows{margin-top:auto;padding-top:16px;display:grid;gap:7px}
+.idrw{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.idrw dt{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:#E8DCC873;white-space:nowrap}
+.idrw dd{font-size:13.5px;color:var(--cream);text-align:right;overflow-wrap:anywhere}
+
+.empty{border:1px dashed var(--line);padding:44px 24px;text-align:center}
+.empty h3{font-size:24px}
+.empty p{color:#8A7A66;margin:8px auto 20px;max-width:34ch;font-size:15px}
+
+/* ─────────── footer ─────────── */
+.ft{
+  position:relative;background:var(--ink);color:var(--cream);
+  box-shadow:inset 0 26px 34px -26px #00000073;
+}
+.ft::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,#D9C3A33d 22%,#D9C3A33d 78%,transparent);
+}
+.ft__top{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:clamp(32px,8vw,112px);
+  padding:clamp(48px,6vw,72px) var(--pad) clamp(38px,5vw,54px);
+}
+.ft__col{flex:0 0 auto;width:clamp(128px,21vw,192px)}
+
+.ft__logos{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:0 var(--pad) clamp(26px,3.5vw,38px);
+}
+.ft__bb{display:block;flex:0 0 auto;color:var(--cream);width:clamp(118px,18vw,170px)}
+.ft__bb svg{width:100%;height:auto;display:block;opacity:.95}
+
+.ft__col h4{
+  font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--camel);margin-bottom:20px;
+}
+.ft__col ul{list-style:none}
+.ft__col li{margin-bottom:12px;font-size:14.5px;color:#E8DCC8cc}
+.ft__col a{transition:color .2s}
+.ft__col a:hover{color:var(--cream)}
+.ft__bot{
+  padding:16px 0 22px;display:flex;flex-wrap:wrap;gap:10px 24px;
+  justify-content:space-between;align-items:center;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#E8DCC880;
+}
+.ft__asii{height:clamp(22px,3vw,30px);width:auto;opacity:.85;flex:0 0 auto}
+@media (max-width:620px){ .ft__bot{justify-content:center;text-align:center} }
+
+/* ─────────── cart ─────────── */
+.iconbtn--cart{position:relative}
+.badge{
+  position:absolute;top:1px;right:0;min-width:16px;height:16px;padding:0 4px;
+  display:grid;place-items:center;border-radius:9px;
+  background:var(--saddle);color:var(--ivory);
+  font-size:9.5px;letter-spacing:.02em;line-height:1;font-weight:500;
+}
+.badge[hidden]{display:none}
+.cart{position:fixed;inset:0;z-index:92;visibility:hidden}
+.cart.is-open{visibility:visible}
+.cart__scrim{
+  position:absolute;inset:0;background:#1E1710;opacity:0;transition:opacity .35s;
+}
+.cart.is-open .cart__scrim{opacity:.72}
+.cart__panel{
+  position:absolute;top:0;right:0;height:100%;width:min(100%,404px);
+  background:var(--ivory);display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);
+  box-shadow:-30px 0 70px -30px #000;border-left:5px solid var(--saddle);
+}
+.cart.is-open .cart__panel{transform:none}
+.cart__hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 24px 18px;border-bottom:1px solid var(--line);
+}
+.cart__body{flex:1;overflow-y:auto;padding:8px 24px 20px}
+.ci{display:flex;align-items:center;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}
+.ci__m{flex:1;min-width:0}
+.ci__n{font-family:var(--serif);font-size:20px;line-height:1.1}
+.ci__p{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--saddle);margin-top:5px}
+.ci__x{font-size:13px;color:#A2917C;padding:4px;flex:0 0 auto}
+.ci__x:hover{color:var(--espresso)}
+.cart__empty{padding:56px 8px;text-align:center}
+.cart__empty h4{font-family:var(--serif);font-size:22px}
+.cart__empty p{font-size:15px;color:#8A7A66;margin-top:8px}
+.cart__ft{padding:20px 24px 24px;border-top:1px solid var(--line);background:var(--cream)}
+.cart__total{
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;
+}
+.cart__total span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A7A66}
+.cart__total b{font-family:var(--serif);font-size:28px;font-weight:400}
+
+/* ─────────── edit dialog ─────────── */
+.modal{
+  position:fixed;inset:0;z-index:88;background:#1E1710d9;display:none;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal.is-open{display:flex}
+.modal__panel{
+  width:min(100%,440px);max-height:90vh;overflow-y:auto;
+  background:var(--ivory);color:var(--espresso);padding:26px 26px 24px;
+  border-top:5px solid var(--saddle);box-shadow:0 30px 70px -30px #000;
+}
+.modal__hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.modal__x{font-size:15px;color:#8A7A66;line-height:1;padding:4px}
+.modal__x:hover{color:var(--espresso)}
+.fields{display:grid;gap:16px;margin-top:22px}
+.fld{display:block}
+.fld span{
+  display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:#8A7A66;margin-bottom:7px;
+}
+.fld input,.fld select{
+  width:100%;padding:11px 13px;font-size:15px;font-family:var(--sans);font-weight:300;
+  background:#fff;border:1px solid var(--line);color:var(--espresso);border-radius:0;
+}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--saddle)}
+.fields__note{margin-top:16px;font-size:13px;color:#8A7A66;line-height:1.55}
+.modal__ft{display:flex;gap:10px;margin-top:24px}
+.modal__ft .btn{flex:1;padding-left:0;padding-right:0;text-align:center}
+
+/* ─────────── lightbox + toast ─────────── */
+.lb{position:fixed;inset:0;z-index:90;background:#1E1710f2;display:none;place-items:center;padding:28px}
+.lb.is-open{display:grid}
+.lb img{max-width:100%;max-height:82vh;object-fit:contain}
+.lb__c{position:absolute;top:22px;right:26px;color:var(--cream);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.lb__cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:var(--tan);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:95;
+  background:var(--espresso);color:var(--cream);padding:14px 22px;max-width:min(92vw,460px);
+  display:flex;gap:14px;align-items:center;opacity:0;pointer-events:none;transition:.35s;
+  box-shadow:0 18px 44px -20px #000;
+}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.toast i{width:3px;align-self:stretch;background:var(--camel);flex:0 0 3px}
+.toast b{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--camel);font-weight:500}
+.toast span[hidden]{display:none}
+.toast--solo{padding:16px 26px}
+.toast--solo b{font-size:12px;letter-spacing:.26em;color:var(--cream)}
+.toast span{font-size:14.5px}
+
+/* reveal */
+.up{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.up.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .up{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="bb"><g fill="currentColor"><path d="m110 169.5-14.7 15.8q9.5-1.3 17.1-3.4 12.9-3.6 12.9-8.3 0-4.2-11.1-4.1ZM93.2 188q-10.5 10.2-10.5 15 0 2.3 2.5 3.5 2 .8 4.5.8 7.8 0 15.3-4.6 7.5-4.7 7.5-9 0-3.5-6.5-5a37 37 0 0 0-12.8-1m10-1.1q1 0 3.5.7 8 2 8 7.5 0 5.7-8 10.7t-16 5a12 12 0 0 1-6.4-1.6q-3-1.8-3-5.6 0-1.5.4-2.7l-3.8 4.6q-3 3.6-3.8 3.6-.5 0-1-.4-.7-.4-.7-1 0-1.7 7.2-9.4 8-8.7 8.8-10.2l-.5-1.3q0-1.5 2.9-1.2l15-15.5a54 54 0 0 0-19.3 5q-1.5 0-1.4-1.3 0-2 7.7-4.3a72 72 0 0 1 16.3-2.7q1.8-1.7 2.6-1.7.6 0 .8.6t.2 1.1q14.1 0 14.1 8.2 0 4.6-7.2 7.8a76 76 0 0 1-16.4 4m32.1 6.8q-1.8 0-7.5 5.5T122 206q0 .8.8.8 1.7 0 7.5-5.3 5.8-5.4 5.8-7.2 0-1-.9-1m-15.3 9q-8.2 6.5-11.4 6.5-.4 0-.4-.4 0-.6.8-.7 2.9-.5 8-4.5l4-3.1 6.4-5.1q4.3-3 7.5-3 2.3 0 2.6 2.3 1.2-1.2 1.6-1.2 1 0 1 .9 0 1.1-4.7 6.6a25 25 0 0 0-4.7 6.5q0 .6 1 .6t1 .6-2 .6q-2.2 0-2.2-1.8a9 9 0 0 1 1.7-4.2l-3.8 3.3q-2.8 2-4.5 2-2.7 0-2.7-2.6 0-1.5.8-3.3"/><path d="M175 173.2q-1.2 0-9.6 9.5-7.8 9-10 12.4 20.1-16.5 20.1-21.4 0-.5-.5-.5M149 199l-7.7 5.8q-6.2 4.2-9 4.2-.4 0-.4-.4t1.1-.7q1.3-.2 3-1.1 2-1 7-4.8l7.5-5.7q4.6-6.9 12.7-15 9-9 12-9 1.4 0 1.4 1.6 0 3.9-9.1 12.4-5.8 5.3-12.6 10.4-1.5 1.2-3.9 5-2.4 4-2.4 5.5 0 .8 1.7.8.4 0 .4.5t-1.7.6q-2.5 0-2.5-2.6 0-2.5 2.4-7.5"/><path d="M173.1 203.1q-5.4 5.2-7.9 5.2-2 0-1.9-2 0-2.6 2.2-5.7l4-4.7-8.8 7.3q-7.5 5.7-10.5 5.7-.4 0-.4-.4t.9-.7l2.7-1q1.8-.8 7.6-5.3l10.5-9q.8-.4 1.5-.4 1.8 0 1.8 1.1t-4.4 6q-4.2 4.8-4.3 6.9 0 .5.6.5 1.8 0 8.2-7 6.4-7.2 7.3-7.2.4 0 .8.5t.4.9q0 .8-4.7 6.3t-4.8 7q0 .7 1 .8 1 0 1.1.5 0 .6-1.6.6-2.6 0-2.6-2 0-1.5 1.3-3.9"/><path d="M218.3 173.2q-1.2 0-9.6 9.5-8 9-10 12.4 20.1-16.5 20.1-21.4 0-.5-.5-.5M192.2 199l-7.6 5.8q-6.3 4.2-9.1 4.2-.3 0-.4-.4 0-.5 1.2-.7t3-1.1q2-1 7-4.8l7.5-5.7q4.6-6.9 12.7-15 9-9 12-9 1.4 0 1.4 1.6 0 3.9-9.1 12.4-5.8 5.3-12.6 10.4a19 19 0 0 0-4 5q-2.3 4-2.4 5.5 0 .8 1.7.8.4 0 .4.5t-1.6.6q-2.5 0-2.5-2.6 0-2.5 2.4-7.5m66.8-29.5-14.6 15.8q9.5-1.3 17.1-3.4 12.9-3.6 12.8-8.3 0-4.2-11-4.1ZM242.3 188q-10.5 10.3-10.5 15.2 0 2.3 2.5 3.5 1.8.8 4.5.8 7.8 0 15.3-4.6 7.4-4.7 7.4-9 0-3.5-6.5-5a37 37 0 0 0-12.7-1m10-1.1q.8 0 3.5.7 8 2 8 7.5 0 5.7-8 10.7-8.2 5-16 5a12 12 0 0 1-6.4-1.6q-3-1.8-3-5.6 0-1.5.3-2.7l-3.8 4.6q-3 3.6-3.7 3.6-.6 0-1.1-.4t-.6-1q0-1.7 7.1-9.4 8-8.7 8.8-10.2l-.5-1.3q0-1.5 3-1.2l14.9-15.5a54 54 0 0 0-19.2 5q-1.4 0-1.4-1.3 0-2 7.6-4.3a72 72 0 0 1 16.3-2.7q1.9-1.7 2.6-1.7.6 0 .9.6t.1 1.1q14.2 0 14.2 8.2 0 4.6-7.2 7.8a77 77 0 0 1-16.4 4m29.5 14q1-1 2.3-3a7 7 0 0 0 1.2-3.3q0-1.2-1-1.2-1.5 0-3 1.9-1.6 2-1.6 3.4 0 1.8 2 2.2m-3-3.8q-6.3 5.4-6.3 9 0 1.5 1.5 1.4 2.3 0 7.2-5.6-2.6-.6-2.6-3.3zm-7.4 3.8-6.4 4.8q-4.8 3.4-7.3 3.4-.3 0-.3-.4 0-.6.6-.7 1.8-.3 3.2-1 2.3-1.4 7.5-5.5l8.2-6.7q2.4-2 2.9-2 .7 0 1.7.8 1.8-1.3 3.2-1.3 2 0 2 2.2 0 3.4-5.3 9.2-5.5 6-8.9 5.9-3 0-3.1-3.3 0-1.8 2-5.4m51.5-27q0-.3-.3-.4-1.5 0-8.4 7.3-5.8 5.8-8.2 8.9 12.3-7.5 15.7-13.2 1.2-2 1.2-2.6m-18.7 26.9q3-3.6 3-5.8 0-1.6-1.4-1.6-1.5 0-2.8 1.5t-1.2 3q0 2.1 2.4 2.9m-.7 1q-3-1.3-2.9-3.8 0-1 .7-2.4-6.3 8-6.3 10.7 0 1.3 1.2 1.3 2.8 0 7.3-5.9m-.3-8.4q1.5-1 3.2-1.1 1.3 0 2.2 1t1 2.3q0 4-4.5 8.7-4.5 4.8-8.4 4.8-3.7 0-3.7-3.9 0-2 1.8-5.7-4.8 4.3-6.8 5.8-5.1 3.9-8 3.9-.4 0-.4-.4 0-.6.8-.7 3.2-.5 8.5-5 6-4.6 11.4-11.3a111 111 0 0 1 13.9-15q6-5 8-5t2 2-4 6.5a63 63 0 0 1-12.3 9.6q-1.3.6-3.7 2.3-.4.3-1 1.2m25 7.6q1.2-1 2.3-3a7 7 0 0 0 1.3-3.3q0-1.2-1-1.2-1.5 0-3 1.9-1.6 2-1.6 3.4 0 1.8 2 2.2m-3-3.8q-6.3 5.4-6.3 9 0 1.5 1.4 1.4 2.4 0 7.3-5.6-2.7-.6-2.6-3.3zm-7.4 3.8-6.4 4.8q-4.8 3.4-7.3 3.4-.3 0-.4-.4 0-.6.7-.7 1.8-.3 3.2-1a64 64 0 0 0 7.5-5.5l8.2-6.7q2.3-2 2.8-2 .8 0 1.8.8 1.7-1.3 3.1-1.3 2.1 0 2.1 2.2 0 3.4-5.4 9.2-5.4 6-8.8 5.9-3 0-3.1-3.3 0-1.8 2-5.4m36.4-6.3q-.9.5-2.5 2-1.8 1.8-1.8 2.4l.3.3q.8 0 2.3-2 1.2-1.6 1.7-2.7m-13.8 5.9-6.4 5q-5 3.6-7.6 3.6-.4 0-.4-.4 0-.6.7-.7 3-.6 7.8-4.3l8.6-6.8q7-5.8 10.8-5.8 2 0 2 1.5.7 0 .7.7 0 .5-.7.5-.7 2.3-2.4 4.4-2 2.6-3.9 2.6-1 0-1-1 0-1.5 2.3-3.8 2.1-2 3.8-2.8l.1-.3q0-.5-.4-.5-2 0-7.4 5.5t-5.4 7.7q0 1.5 1.2 2 .6.3 2.2.4 1.2.2 1.2.6 0 .6-2.2.6-4.8 0-4.8-4.4 0-1.6 1.2-4.3"/><path d="M373.8 185.6q-1.5 0-1.5-1.5 0-1.2 1.6-2.3 1.3-.9 2.7-.9 1.6 0 1.6 1.8 0 1.2-1.6 2.1-1.5.8-2.8.8M360.2 207q0 .9 1.8.9.4 0 .4.5t-2 .6q-2.4 0-2.4-2.3 0-2.6 6.9-10.8l-8.4 6.9q-7.5 6-10.9 6.1-.3 0-.3-.4 0-.6.6-.7 2-.4 3.5-1.3 2-1 8.6-6.2l9.4-8 1.7-.2q1 0 1 1.2 0 1.3-5 7t-5 6.7"/><path d="M404.7 173.2q-1.2 0-9.6 9.5a132 132 0 0 0-10 12.4q20.1-16.5 20.1-21.4 0-.5-.5-.5M378.6 199l-7.6 5.8q-6.3 4.2-9 4.2-.5 0-.5-.4t1.2-.7 3-1.1q2-1 7-4.8l7.5-5.7q4.6-6.9 12.7-15 9-9 12-9 1.4 0 1.4 1.6 0 3.9-9.1 12.4-5.8 5.3-12.6 10.4a19 19 0 0 0-4 5q-2.3 4-2.4 5.5 0 .8 1.7.8.5 0 .5.5t-1.7.6q-2.5 0-2.5-2.6 0-2.5 2.4-7.5"/><path d="M404 200.7q1-1 2.3-3a7 7 0 0 0 1.2-3.3q0-1.2-1-1.2-1.5 0-3 1.9-1.6 2-1.6 3.4 0 1.8 2 2.2m-3-3.8q-6.2 5.4-6.2 9 0 1.5 1.4 1.4 2.3 0 7.2-5.6-2.6-.6-2.6-3.3 0-.7.3-1.5m-7.5 3.8-6.4 4.8q-4.8 3.4-7.2 3.4-.4 0-.4-.4 0-.6.6-.7 1.9-.3 3.2-1a64 64 0 0 0 7.6-5.5l8.1-6.7q2.4-2 2.9-2 .7 0 1.7.8 1.8-1.3 3.2-1.3 2 0 2 2.2 0 3.4-5.3 9.2-5.5 6-8.8 5.9-3.2 0-3.2-3.3 0-1.8 2-5.4m26.1-5.4-.2-1.3q0-.8 2-2.6t2.7-1.8.7.7q0 .5-.7 1.8 3.5 0 3.5 2.8 0 2.2-4.5 7t-4.5 5.4.5.6h1q.5 0 .5.5t-1.8.6q-2.3 0-2.3-2t2.3-5q1.4-2 4.2-4.7 2.3-2.2 2.3-2.5 0-.4-.6-.4l-1.7.3q-1.3.3-1.5.6-14.5 13.5-19.5 13.6-.4 0-.4-.4 0-.6.9-.7l2.6-1q2.5-1.1 7.5-5.2 4.4-3.7 6.9-6.3m24.7 23.5H55.8v1.9h388.4Zm-237.6 23.3v5.6l.1 2 .2.6.5.3 1.9.1v.9h-8.1v-.8h.1l1.7-.2.6-.2.2-.6.1-1.9v-14.1q0-.6-.2-.7l-.5-.2-1.9-.2h-.1v-.8h13.9l-.3 1.6-.1 2.5-.2.1h-.7l-.1-1.2q0-.8-.3-1.4a13 13 0 0 0-4-.4l-2.6.1q-.2 1-.2 5.3v2.4h4.5l1-.2.2-.3.2-1v-.8l.2-.1h.7l.1.1v6.4h-.9v-1.2l-.2-1q0-.3-.3-.4l-1-.2a23 23 0 0 0-4.5 0m10.6-10.4 1.8.1h6.3v.8l-1.6.1-.7.2q-.3.2-.3.7l-.1 1.6v14.4l.2.6.6.3 1.8.1.1.1v.8h-8.1v-.8l1.8-.2.5-.2.3-.6v-16q0-.6-.2-.7l-.5-.2-1.9-.2v-.8Zm9.6 0 1.8.1h6.3v.8l-1.6.1-.7.2q-.3.2-.3.7l-.1 1.6v14.4l.3.6.5.3 1.8.1.1.1v.8h-8.1v-.8l1.8-.2.5-.2.3-.6v-2l.1-2.8v-9.2l-.1-2q0-.6-.2-.7l-.5-.2-1.9-.2v-.8Zm16.6 19.9-.2-.2v-.6l4.7-5q2.8-3 3.7-4.7a7 7 0 0 0 .9-3.1 4 4 0 0 0-1-2.8 4 4 0 0 0-2.9-1.2 5 5 0 0 0-2 .4q-.7.3-1 .8t-.9 2.4v.1h-.7l-.1-.1.4-3.7q1.4-1.3 2.5-1.7a8 8 0 0 1 5.2.2q1.3.6 2.2 1.8.8 1.3.8 3 0 1.1-.5 2.4t-1.4 2.4l-2.5 2.7-4.4 4.4h5.5l4.2-.1h.1a7 7 0 0 0 0 2.4v.2a89 89 0 0 0-9.5-.1zm16.9-9.5q-.1 2.7.4 4.8a6 6 0 0 0 1.3 3.1 3 3 0 0 0 2.2 1q1.2 0 2-.8t1.3-3 .3-5q0-4.8-.9-7.1t-3-2.3q-1.7 0-2.7 1.8t-1 7.5m-2.3.8q0-2.4.2-4.5.3-2 1.1-3.5a6 6 0 0 1 2.2-2.3q1.2-.8 2.9-.8 1.8 0 3.3 1t2 3 .6 5.3q0 5.7-1.7 8.2a5 5 0 0 1-4.7 2.7q-1.6 0-2.7-.7t-1.9-1.9q-.7-1.2-1-2.9t-.3-3.6m14 8.7-.2-.2v-.6l4.7-5q3-3 3.7-4.7a7 7 0 0 0 .9-3.1 4 4 0 0 0-1-2.8 4 4 0 0 0-2.8-1.2 5 5 0 0 0-2 .4q-1 .3-1.1.8-.3.4-.9 2.4v.1h-.6l-.2-.1.5-3.7q1.2-1.3 2.4-1.7a8 8 0 0 1 5.2.2q1.3.6 2.2 1.8.8 1.3.8 3 0 1.1-.5 2.4a9 9 0 0 1-1.4 2.4l-2.5 2.7-4.4 4.4h5.5l4.3-.1v2.6a89 89 0 0 0-9.5-.1zm17.1-6.2q0 1.5.4 2.8.4 1.4 1.3 2a3 3 0 0 0 4 .2q.8-.6 1.2-1.8a7 7 0 0 0 0-5q-.4-1-1.2-1.6-1-.6-2-.6t-1.7.4l-1.3 1q-.4.4-.6 1zm8.4-13.2a11 11 0 0 0-6.7 4.8 10 10 0 0 0-1.5 4.8l2.2-1.6 1-.4 1.4-.2q1.5 0 2.6.7a4 4 0 0 1 1.7 1.8q.6 1.3.6 3 0 2.3-1.1 3.8t-2.4 2.3-3 .6a5 5 0 0 1-4.3-2 9 9 0 0 1-1.5-5.5q0-2.3.6-4.3t2-3.7 3.4-3 4-1.7Zm-101.8 2H139v1.4h56.6Zm0 3.9h-47.3v1.4h47.3Zm0 3.9h-38v1.4h38Zm0 3.9h-28.7v1.4h28.7Zm108.8-11.6H361v1.4h-56.6Zm0 3.9h47.3v1.4h-47.3Zm0 3.9h38v1.4h-38Zm0 4h28.7v1.3h-28.7Zm1.2-129.9 7.9-4.8c7.3-4 19.5-7.1 26-.1 4.7 5.3 2 14.4-5.7 14.3-3.1 0-7.6-3.3-4-5.7.6 1.1.2 2.2 1.4 3 2.8 2 7.4-.4 8.4-3.2 1.7-4.7-2.4-9.1-7-10.3-10.8-3-28.2 7.6-33.7 16.2-5.2 8-6.6 21.4 3.7 26.5 6.3 3.2 15.9 1.2 16.2-6.5 0-2-1-5.1-3.6-5.1-1.9 0-2 1-1.9 2.3 0 1.2-1.5.4-1.7-.5-.6-2.8 3-4 5.4-3 7.3 3 2.8 15-5.6 16-16 1.6-20.8-13.3-16.6-25.4 4.5-12.7 23.7-27.8 22.1-40.7-.3-2.2-2.5-6.2-5.4-5-1.5.7-1.3 2.2-1.4 3.4 0 .3.2.6-.3.5-2.3-1.6-.9-5 1.7-5.5s5 1 6.2 3c4.1 6.4-2 17-6.1 22.4h.3a37 37 0 0 0 9.6-47.7c-5-8.4-16.6-15.9-27.2-11.4-10 4.3-10.2 19.4.3 21.9 3.2.8 7.9-.5 6.7-4.4-.3-.8-2-2-1-2.8 1.6-.6 3.2 1.6 3.4 2.9.7 5.2-6.3 7.3-10.7 5.7-14.3-5.2-8.8-25.3 6.5-26.4 13.2-1 23.8 10.9 26.9 21.9 4.4 16-.5 29.6-12.7 41-2.2 2-5.4 4.1-7.3 6.3-.2.2-1 1-.8 1.2M200 63.8c.2 2-2.2 2.4-1.3 4.8 1.2 3.4 6.2 2.9 8.8 1.4 8.5-4.5 7.1-16.7-1.3-20.7-10-4.8-21.6 2-27 10-9.5 14.5-6 33.5 5.6 45.8.4.4 3 3 3.3 3.1h.3c-4.1-5.6-10.6-16.8-5.7-23.1 2.2-2.9 7.8-3.8 8.6.4.1 1 0 3-1.4 2.6.4-6.3-5.3-4.3-6.5.3-3 10.8 14 26.6 19 35.8 5 8.9 7.5 22.1-2.6 28.7-8.1 5.3-21.4 2.1-20.3-8.5.4-3.7 5.7-7.7 8.4-4 1.5 2.2-.6 3.9-1.2 3-.1-.2.6-2-.8-2.7-2.8-1.2-4.8 2.7-4.7 4.9 0 7.5 9.5 9.8 15.8 6.9 10.4-4.9 9.5-18.1 4.5-26.4-5.4-8.7-23.9-20.1-34.8-16.4-4.3 1.5-7.9 5.7-6.3 10.2 1.6 4.3 9.6 6 9.6.2 3.1 1 1 4-1.1 5-8.6 3.5-14.9-8.2-7.3-14.6 6.8-5.9 18.4-2.8 25.4 1.3l7.4 4.6c.2-.2-.9-1.3-1-1.5-3.5-3.5-7.8-6.4-11.2-10.3a38 38 0 0 1-7.4-40.1c4.2-10.7 16.7-21.8 29.6-17.8C216.3 50.3 220 66.5 208 72c-4.3 2-11.4.7-11.7-4.4-.1-1.7 1.6-4.6 3.6-3.8"/><path id="bbP1" d="M237.6 94.3q16.2-1.5 17.6-8.2l.3-2.9q0-5.3-5.7-7.5a49 49 0 0 0-12.2 18.6m-6.2 24.4q7.8 0 14-3.7 7.3-4.5 7.3-11.5 0-8.6-12.5-8.6l-2.8.1q-3.7 8.8-6 12.4-3.7 6-9.7 9.7 5.2 1.6 9.7 1.6m-20.6 1.6q4.6 0 8.8-3.1a49 49 0 0 0-9.8-2.2q-4.6 0-4.6 2.7 0 2.6 5.6 2.6m-.5.6q-6 0-5.9-3.3 0-3.6 4.9-3.6 2.3 0 10.9 2.6 2-1.7 4-4.3t4-6l2.8-6 2.8-6a47 47 0 0 1 14.9-19q-2.4-.6-5.4-1a53 53 0 0 0-14 .3q-3.6.6-6.7 1.9-7.3 3-11 9-2.1 3.7-2.1 7.3a9 9 0 0 0 2.4 6.5 8 8 0 0 0 6.3 2.6q4.5 0 7.7-3a10 10 0 0 0 3.4-7.6q0-3-1.6-4.8a6 6 0 0 0-4.7-2q-2.2 0-4 1.4a5 5 0 0 0-1.7 3.8q0 1.8 2 1.8l.2-.2.4-.3.1.3q0 .7-.8.7-2.6 0-2.6-2.4t2.2-4.3a7 7 0 0 1 4.6-1.7q3.3 0 5.3 2.1a7 7 0 0 1 2.2 5.4q0 5-4 8.5a13 13 0 0 1-8.8 3.2q-4.8 0-7.9-2.8a10 10 0 0 1-3.3-7.6q0-3.2 1.6-6.2A22 22 0 0 1 221 75.8a45 45 0 0 1 16.4-2.8q7.2 0 12.8 1.5a26 26 0 0 1 4.6-2q2.3-.8 4.3-.8.6 0 .7.2t-.3.2h-.8l-1 .1q-3.4.3-6.6 2.6 8 2.7 8 8.8l-.1 1.3-.3 1.3q-.9 3.9-7.3 6.3-4.6 1.5-10.3 2h2.3q13.5 0 13.5 9.3 0 5.3-4 9.2-3.5 3.5-9 5.3-2.2.8-4.6 1.1a36 36 0 0 1-11.5-.2q-3.4-.5-6.7-1.7-6.2 3.4-10.7 3.4"/><path id="bbP2" d="M273.7 119.3q16.2-1.5 17.6-8.3.3-1.4.3-2.9 0-5.3-5.7-7.4a49 49 0 0 0-12.2 18.5m-6.2 24.4q7.8 0 14-3.7 7.3-4.4 7.3-11.5 0-8.7-12.5-8.6l-2.8.1q-3.8 8.8-6 12.4a29 29 0 0 1-9.7 9.7q5.2 1.5 9.7 1.6m-20.6 1.6q4.5 0 8.8-3.1a49 49 0 0 0-9.8-2.2q-4.5 0-4.6 2.7 0 2.6 5.6 2.6m-.5.6q-6 0-5.9-3.3 0-3.6 4.9-3.6 2.3 0 10.9 2.7 2-1.8 4-4.3 2-2.6 4-6.1l2.8-5.9 2.8-6a47 47 0 0 1 14.9-19q-2.4-.7-5.4-1a53 53 0 0 0-14 .2q-3.6.5-6.7 2-7.3 3-11 8.8-2.1 3.8-2.1 7.4a9 9 0 0 0 2.4 6.5 8 8 0 0 0 6.3 2.7q4.4 0 7.7-3.2a10 10 0 0 0 3.4-7.4q0-3-1.6-4.9a6 6 0 0 0-4.7-2q-2.2 0-4 1.4a5 5 0 0 0-1.7 3.8q0 1.8 2 1.8l.2-.2.4-.2.1.2q0 .8-.8.8-2.6 0-2.6-2.5 0-2.4 2.2-4.2a7 7 0 0 1 4.6-1.8q3.3 0 5.3 2.1a7 7 0 0 1 2.2 5.4q0 5-4 8.5a13 13 0 0 1-8.8 3.2q-4.8 0-7.9-2.8a10 10 0 0 1-3.3-7.6q0-3.1 1.6-6.2 3.6-6.9 12.4-10.3a45 45 0 0 1 16.4-2.9q7.3 0 12.8 1.6a26 26 0 0 1 4.6-2.1q2.3-.8 4.3-.8.7 0 .7.2t-.3.2h-.8l-1 .2q-3.4.3-6.6 2.6 8 2.6 8 8.7l-.1 1.3-.3 1.3q-.9 3.9-7.3 6.3-4.6 1.6-10.3 2h2.3q13.5 0 13.5 9.3 0 5.3-4 9.3-3.4 3.4-9 5.2-2.2.9-4.6 1.1a36 36 0 0 1-11.5-.2q-3.3-.5-6.7-1.6-6.2 3.3-10.7 3.3"/><path d="M269.5 58.5h-.3l-.1-.1-.2-.2V58l-.1-.1v-.3h.1q0-.2 0 0l.2-.2h.7l.1.1.1.2v.6h-.1l-.1.1zm-4.9 6.2q-3.2-1.3-6.7-2-4-.9-8-1a39 39 0 0 0-14.4 3q-.8-2.3-2-4.4a6 6 0 0 0 5.6-2.8q1 .9 2.4 1.2 2.6.2 4.5-1.6a12 12 0 0 0 2.7-4.6l1.4-3.9 1.4 3.8a12 12 0 0 0 2.7 4.7 6 6 0 0 0 4.4 1.6q1.5-.2 2.5-1.2a6 6 0 0 0 5.6 2.8q-1.2 2.3-2 4.4m-34-6.2h-.3v-.1l-.2-.2V58l-.1-.1v-.3h.1q0-.2 0 0l.1-.2h.8l.1.1.1.2v.6h-.1l-.1.1zm6.9-4V54l.2-.1.3-.1h.4l.2.2v.2l.1.1v.4h-.1l-.2.1h-.6l-.1-.1zm12.2-9.9.4-.2h.2l.2.1v.1h.1l.1.2v.5h-.1v.1h-.1v.1h-.6l-.1-.1-.2-.2V45l-.1-.2v-.2zm11.3 9.3h.1l.3-.1h.4l.1.2.2.2v.3l-.1.2-.2.1h-.6l-.1-.1-.1-.1-.1-.1V54m10.4 3.2q-.5-1.2-1.9-1.4l-1.2.3a2 2 0 0 0-1 .9q-.3.7 0 1.6c-2 .7-4.2-.4-5-2.2l.3-.1c1-.4 1.5-1.7 1-2.6v-.2q-.5-1.2-1.9-1.3l-1.2.2q-.6.2-1 1-.5 1.4.6 2.5c-.4.9-1.5 1.3-2.4 1.2-1.4 0-2.6-1-3.3-2.1q-1.3-2-1.9-4l-1.4-4h.3a2 2 0 0 0 1-2.8q-.6-1.2-1.9-1.4-.7 0-1.3.3t-1 .9c-.3.8 0 2 .7 2.5l.1.1-1.5 4.3q-.6 2.1-1.9 4-1.1 1.8-3.2 2.2-1.7.2-2.6-1.2.9-1 .5-2.2v-.2q-.6-1.2-2-1.3l-1.2.2q-.6.2-1 1-.5 1.4.6 2.5l1 .5c-.8 1.8-3 2.9-5 2.2a2 2 0 0 0 0-1.3V57q-.6-1.1-1.9-1.3-.7 0-1.2.3a2 2 0 0 0-1 .9q-.6 1.5.6 2.6 1 .8 2.2.4 1.6 3 2.8 6 .4.8 1.2.5a37 37 0 0 1 14.5-3.1q3.8 0 7.5 1 3.8.5 7.2 2.1.8.3 1.2-.5a30 30 0 0 1 2.8-6q.9.3 1.8 0c1-.5 1.4-1.7 1-2.7"/></g></g>
+  <g id="bbmark" fill="currentColor"><use href="#bbP1"/><use href="#bbP2"/></g>
+</defs></svg>
+
+<div class="stripe stripe--thin"></div>
+
+<!-- ═══ header ═══ -->
+<header class="hd">
+  <div class="wrap hd__row">
+    <a class="hd__mark" href="#" data-go="home" aria-label="Balul Bobocilor FII 2026 — acasă">
+      <svg viewBox="154 28 197 128" role="img"><use href="#bb"/></svg>
+    </a>
+    <nav class="hd__nav"><ul>
+      <li><a class="navlink" href="#" data-go="archive">Throwback</a></li>
+      <li><a class="navlink" href="#" data-go="quiz">Quiz</a></li>
+      <li><a class="navlink" href="#" data-go="tickets">Bilete</a></li>
+    </ul></nav>
+    <div class="hd__r">
+      <button class="iconbtn iconbtn--cart" id="cartOpen" aria-label="Coșul tău">
+        <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9.2 8V6.3a2.8 2.8 0 0 1 5.6 0V8"/></svg>
+        <span class="badge" id="cartCount" hidden>0</span>
+      </button>
+      <button class="iconbtn" data-go="account" aria-label="Contul tău">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.7"/><path d="M4.6 20c1.1-3.9 4-5.9 7.4-5.9s6.3 2 7.4 5.9"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════ HOME ══════════ -->
+<div class="page is-on" data-page="home">
+
+  <section class="hero">
+    <div class="hero__tex"></div>
+    <div class="hero__bg" id="heroBg" hidden><img id="heroImg" alt=""></div>
+    <div class="hero__wm"><svg viewBox="154 28 197 128"><use href="#bb"/></svg></div>
+    <div class="wrap hero__in">
+      <div class="hero__lock"><svg viewBox="0 0 500 300" role="img" aria-label="Balul Bobocilor FII 2026"><use href="#bb"/></svg></div>
+      <p class="hero__theme"><i></i><span>Tema ediției</span><i></i></p>
+      <h1 class="h-xl">Old Money</h1>
+      <p class="lede hero__sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+      <div class="hero__cta">
+        <a href="#" class="btn btn--solid" data-go="tickets">Cumpără un bilet</a>
+        <a href="#programme" class="btn btn--line" data-go="tickets">Vezi programul serii</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+</div>
+
+<!-- ══════════ ARCHIVE ══════════ -->
+<div class="page" data-page="archive">
+  <section class="sec">
+    <div class="wrap">
+      <div id="archive"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ QUIZ ══════════ -->
+<div class="page" data-page="quiz">
+  <section class="sec sec--espresso">
+    <div class="wrap sealed">
+      <div class="sealed__m"><svg viewBox="154 28 197 128"><use href="#bb"/></svg></div>
+      <h2 class="h-lg" style="margin-top:16px">Sigilat deocamdată</h2>
+      <p class="lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p style="margin-top:34px"><span class="btn btn--solid" aria-disabled="true" style="opacity:.4;cursor:not-allowed">Se deschide pe 3 noiembrie</span></p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ TICKETS ══════════ -->
+<div class="page" data-page="tickets">
+  <section class="sec sec--cream">
+    <div class="wrap">
+      <div class="sec__head" style="margin-bottom:22px">
+        <span class="kicker">Bilete</span>
+      </div>
+      <div class="tiers" id="tiers"></div>
+      <p style="margin-top:34px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A7A66">
+        Biletele sunt nominale și netransmisibile · Sala C309, Corp C
+      </p>
+    </div>
+  </section>
+
+  <section class="sec sec--espresso" id="programme">
+    <div class="wrap">
+      <div class="sec__head up">
+        <span class="kicker">Programul serii</span>
+        <h2 class="h-lg">Șase ore, cam așa</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="prog up" id="prog"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ ACCOUNT ══════════ -->
+<div class="page" data-page="account">
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec__head">
+        <span class="kicker">Contul tău</span>
+        <h2 class="h-lg">Bună seara, <span id="firstName"></span></h2>
+      </div>
+      <div class="acct">
+        <div>
+          <aside class="idcard">
+            <div class="idcard__in">
+              <div class="idcard__hd">
+                <span class="idcard__d" id="disc">AV</span>
+                <span class="idcard__mk"><svg viewBox="154 28 197 128" aria-hidden="true"><use href="#bb"/></svg></span>
+              </div>
+              <h3 id="accName">Andrei Vasiliu</h3>
+              <p class="idcard__s">Promoția 2026 · Balul Bobocilor FII</p>
+              <dl class="idcard__rows" id="details"></dl>
+            </div>
+          </aside>
+          <p style="margin-top:20px"><button class="btn btn--espressoline" id="editOpen">Modifică datele</button></p>
+        </div>
+        <div>
+          <h3 class="h-md" style="margin-bottom:6px">Biletele tale</h3>
+          <div id="myTickets" style="margin-top:18px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═══ footer ═══ -->
+<footer class="ft">
+  <div class="wrap ft__top">
+    <nav class="ft__col">
+      <h4>Pagini</h4>
+      <ul>
+        <li><a href="#" data-go="archive">Throwback</a></li>
+        <li><a href="#" data-go="quiz">Quiz</a></li>
+        <li><a href="#" data-go="tickets">Bilete</a></li>
+      </ul>
+    </nav>
+    <div class="ft__col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:bal@fii.uaic.ro">bal@fii.uaic.ro</a></li>
+        <li>Palas Congress Hall</li>
+        <li>Iași, România</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap ft__logos">
+    <a class="ft__bb" href="#" data-go="home" aria-label="Balul Bobocilor FII 2026 — acasă">
+      <svg viewBox="0 0 500 300" role="img"><use href="#bb"/></svg>
+    </a>
+    <img class="ft__asii" src="data:image/webp;base64,UklGRiIFAABXRUJQVlA4WAoAAAAQAAAAZwAAOgAAQUxQSKQEAAABoEVtmyFJ+rOq2l60xrZt27Zt27bNGtu2bXt27LaZ30VmRGRG9d5HxAQQu8Lyj7nof3ENcNma9uX0J+9IYEaaV/HLViu1AUKyp3FeHwE70UnglCVtozEAWlJQLNCL0Wx6hrTHqRTRZCA+K3UGvmbQ+ecDQua7pzWNYmqRsgc4QQEhwDqdwQDOUhqr3EFoA/LbA2yOABBXhYicvgKJudKaHMlAeFNyOQ/9+95EnQCMJtFAh6Oa74GIVtSDgTXk/hn45iJgWYVrJXmWPHjwoJhkClHwUSBqYSxLrTkJwFDit24AkLLAg9UTQD+eQvZS5s3oqZDrcvB/+wNE+/MpS6G70sYIjAXWsNxHxSMqt2kvcLUMKeNTubTriX8KmLMZdB24yqj0FFCP5TANQNLCAKcPQnX5JoGzDWM58NmmKbIpBXjVxol8zZqdAuDDCghn4xqt8pxjDATiAoh8p0cCcdN9yGfYj3wmUcE7MDLViadXMnhvMXoCqGKp+xQAdpBri+fAVrNIGRlmQDxxNouGIf0AbNyUBG3q4Jsq1JPFTCPKcVQ1oWIc+G8zpkIwfl0+ktLS9YcI3Bh5wmDQUYFt/kSBQ5dJQJR5u0hhPd83MMgrSuC4e+sTyXhvk4GoQzTfMB3lCIRv6U2HYEIMgMTjrnJQqT9cj2ya7hC/oxP4UwQIPTPYn6TN8YFHrUBEhX4b8EyjrIHw1gAixctdFkp3ngPHFQp+DwM/WYlosCq2pfLgTQ9DaklDHgs51ObKJhgZ4kVKv3iIq9BKRMoklYF3M4CDqlhcgM/CZBgZ+3zHuHb+EpF1UgoDqUC9bglCKU3PwsD4fcOK20h2ZXQKA0A9yn1Y5XmdDCPDl9axkkMqvVI5GhFR3lGXQgHE35tdrD3EPy8oqZDjdlNZHUhX8f3bz0KUP1YkfHV5hRx7EGuUnv7fb8B/voVCjr+NsYrLczd41esNXUhfKdxn8QY7b02NdYndbre302lp1xpk+aL3i8dzCzhjdpWxELPa5VQIDtM4fwOAVTrzoTWoQqoe2rBynwY7ZksB4qwfCWGplPNgxlTWKPnXhYOZvK0Y8fp9hENVVllQL86ZuOxmEjhDvYi7JXRDHt7hbC/TAZiZmIVvueZmSRKXJK9qCtrwHQMQ5kuOshHmruc7B+AgOYp/vEmPxLY4zFiYnOzEdRbAVUfx+GgW8nMdABBfykHqw/R+XDMAIHxj18YNWnTq3adT9WCZdpm3gaughjt2VyZpvH6YF8JF20WAiNyyVIOE2blsJ4VwQpb5MvTmIlvLs79VJIR//x6jlxIgh/JahgN8WqtC2gy9fwJAEzlyqTJEuQhxNtEMlmMwuNW923fsO3zy/OW7Amhg3L9RAMbKcYzvJDFri2wxzi8SwBgpXD7zjWa1EImxGlYoFUA/KQqofM1YTUTQ1CifPQBQR4pu4K/Kqim0j2PWQs5F9v8AID5YinUC5VgFhNRAVjjEd5MUdwSqsf6NFMFCE+KyS+EaItCTZXks9MvfsI+lSYqguw/5+7Bo5sOHDx8+evLi1bsPn779+B0W2YLxPoT3z4eD/Wyk9yIkJCRkvs70EC1WUDggWAAAABAGAJ0BKmgAOwA+kTyYSCWjIqEu3rgAsBIJaQAAZ9y0qlWJFRYbUzu/nMSo/R4uRSOwzEcGKQMwAAD++E4xn//8aGDOBH/2XwywAuB//+NDK+h5maywAAA=" alt="Asociația Studenților în Informatică Iași">
+  </div>
+  <div class="stripe stripe--thin"></div>
+  <div class="wrap"><div class="ft__bot">
+    <span>© 2026 Asociația Studenților · Iași</span>
+    <span>Palas Congress Hall · 20 noiembrie</span>
+  </div></div>
+</footer>
+
+<div class="cart" id="cart" aria-hidden="true">
+  <div class="cart__scrim" data-cart-close></div>
+  <aside class="cart__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="cart__hd">
+      <h3 class="h-md" id="cartTitle">Coșul tău</h3>
+      <button class="modal__x" data-cart-close aria-label="Închide">✕</button>
+    </div>
+    <div class="cart__body" id="cartBody"></div>
+    <div class="cart__ft" id="cartFoot" hidden>
+      <div class="cart__total"><span>Total</span><b id="cartTotal">0 lei</b></div>
+      <button class="btn btn--espresso btn--wide" id="checkout">Finalizează comanda</button>
+      <button class="btn btn--espressoline btn--wide" data-cart-close style="margin-top:10px">Continuă</button>
+    </div>
+  </aside>
+</div>
+
+<div class="modal" id="edit" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+  <div class="modal__panel">
+    <div class="modal__hd">
+      <span class="kicker" style="color:var(--camel)">Contul tău</span>
+      <button class="modal__x" id="editClose" aria-label="Închide">✕</button>
+    </div>
+    <h3 class="h-md" id="editTitle">Modifică datele</h3>
+    <div class="fields">
+      <label class="fld"><span>Nume complet</span><input id="f-name" type="text" autocomplete="name"></label>
+      <label class="fld"><span>Email</span><input id="f-mail" type="email" autocomplete="email"></label>
+      <label class="fld"><span>Telefon</span><input id="f-phone" type="tel" autocomplete="tel" placeholder="+40 7·· ··· ···"></label>
+      <label class="fld"><span>An de studiu</span>
+        <select id="f-year">
+          <option>Anul I, licență</option>
+          <option>Anul II, licență</option>
+          <option>Anul III, licență</option>
+          <option>Anul I, master</option>
+          <option>Anul II, master</option>
+        </select>
+      </label>
+    </div>
+    <div class="modal__ft">
+      <button class="btn btn--espressoline" id="editCancel">Anulează</button>
+      <button class="btn btn--espresso" id="editSave">Salvează</button>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lb"><span class="lb__c">Închide ✕</span><img id="lbImg" alt=""><span class="lb__cap" id="lbCap"></span></div>
+<div class="toast" id="toast"><i></i><div><b id="toastK"></b><span id="toastV"></span></div></div>
+
+<script>
+/* ══════════════════════════════════════════
+   DE EDITAT
+   ══════════════════════════════════════════ */
+
+/* Pune aici un URL pentru un hero cu fotografie pe tot ecranul (o mașină,
+   o terasă, in — orice cald). Lasă '' pentru heroul bleumarin cu monogramă. */
+const HERO_IMG = '';
+
+const PROGRAMME = [
+  { t:'19:00', h:'Deschiderea',            p:'Lorem ipsum dolor sit amet, consectetur adipiscing.' },
+  { t:'20:00', h:'Competiția de talente',  p:'Sed do eiusmod tempor incididunt ut labore.' },
+  { t:'21:30', h:'Votarea',                p:'Ut enim ad minim veniam, quis nostrud.' },
+  { t:'22:00', h:'Concert · artist invitat', p:'Duis aute irure dolor in reprehenderit.' },
+  { t:'01:00', h:'Plecarea',               p:'Excepteur sint occaecat cupidatat non proident.' },
+];
+
+
+/* Pune URL-uri de imagini în `photos`. Lăsat gol, apare o placă bleumarin. */
+const ARCHIVE = [
+  { year:2025, theme:'Marele Gatsby',                 venue:'Palas Congress Hall', guests:520, photos:['','',''] },
+  { year:2024, theme:'Bal mascat venețian',           venue:'Palas Congress Hall', guests:480, photos:['','',''] },
+  { year:2023, theme:'Monte Carlo',                   venue:'Sala Unirea',         guests:410, photos:['','',''] },
+  { year:2022, theme:'Epoca de aur a Hollywoodului',  venue:'Sala Unirea',         guests:390, photos:['','',''] },
+  { year:2021, theme:'Miezul nopții la Paris',        venue:'Ateneul Național',    guests:240, photos:['','',''] },
+  { year:2019, theme:'Balul Operei din Viena',        venue:'Ateneul Național',    guests:360, photos:['','',''] },
+];
+const GAP = { after:2021, year:2020, note:'Fără bal. Sala a rămas pe întuneric și am rămas cu toții acasă.' };
+
+const TIERS = [
+  { id:'earlybird', name:'Early Bird', price:90, feat:true, flag:'Disponibil acum',
+    left:'Număr limitat de bilete' },
+];
+
+const USER = {
+  first:'Andrei', name:'Andrei Vasiliu', initials:'AV',
+  email:'andrei.vasiliu@info.uaic.ro',
+  email:'andrei.vasiliu@info.uaic.ro',
+  phone:'+40 741 220 214',
+  year:'Anul I, licență',
+  tickets:[ { tier:'Early Bird', serial:'0148', qty:1 } ],
+};
+
+/* ══════════════════════════════════════════
+   WIRING
+   ══════════════════════════════════════════ */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* routing */
+function go(page, hash){
+  $$('.page').forEach(p=>p.classList.toggle('is-on', p.dataset.page===page));
+  $$('.navlink').forEach(a=>a.classList.toggle('is-on', a.dataset.go===page));
+  if(hash){ requestAnimationFrame(()=>$(hash)?.scrollIntoView({behavior:'smooth',block:'start'})); }
+  else window.scrollTo({top:0,behavior:'instant'});
+  observe();
+}
+document.addEventListener('click', e=>{
+  const a=e.target.closest('[data-go]');
+  if(a){
+    e.preventDefault();
+    const href=a.getAttribute('href')||'';
+    go(a.dataset.go, href.startsWith('#') && href.length>1 ? href : null);
+  }
+});
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ $('#lb').classList.remove('is-open'); closeEdit(); closeCart(); } });
+
+/* hero image */
+if(HERO_IMG){ $('#heroImg').src=HERO_IMG; $('#heroBg').hidden=false; }
+
+/* programme */
+$('#prog').innerHTML=PROGRAMME.map(i=>`
+  <div class="prog__i"><div class="prog__t">${esc(i.t)}</div>
+  <div class="prog__h">${esc(i.h)}</div><div class="prog__p">${esc(i.p)}</div></div>`).join('')
+  + '<div class="prog__i prog__i--pad" aria-hidden="true"></div>'.repeat((3 - PROGRAMME.length % 3) % 3);
+
+/* photo helpers */
+function shot(url,cap,year,cls='shot'){
+  if(url) return `<figure class="${cls}" data-full="${esc(url)}" data-cap="${esc(cap)}"><img src="${esc(url)}" alt="${esc(cap)}" loading="lazy"></figure>`;
+  return `<figure class="${cls}"><div class="ph"><div><b>${esc(year)}</b><i>Fotografie de adăugat</i></div></div></figure>`;
+}
+
+/* archive */
+$('#archive').innerHTML=ARCHIVE.map(y=>{
+  const block=`<section class="ed up">
+    <div class="ed__head">
+      <div class="ed__y">${y.year}</div>
+      <div class="ed__t">${esc(y.theme)}</div>
+      <div class="ed__m">${esc(y.venue)}</div>
+    </div>
+    <div class="ed__g">${y.photos.map(p=>shot(p, y.year+' · '+y.theme, y.year)).join('')}</div>
+  </section>`;
+  const gap = y.year===GAP.after
+    ? `<div class="gap up"><b>${GAP.year}</b><p>${esc(GAP.note)}</p></div>` : '';
+  return block+gap;
+}).join('');
+
+/* lightbox */
+document.addEventListener('click',e=>{
+  const f=e.target.closest('[data-full]');
+  if(f){ $('#lbImg').src=f.dataset.full; $('#lbCap').textContent=f.dataset.cap; $('#lb').classList.add('is-open'); return; }
+  if(e.target.closest('#lb')) $('#lb').classList.remove('is-open');
+});
+
+/* tiers */
+const qty=Object.fromEntries(TIERS.map(t=>[t.id,1]));
+$('#tiers').innerHTML=TIERS.map(t=>`
+  <article class="tier up">
+    <span class="tier__ribbon" aria-hidden="true"></span>
+    <div class="tier__main">
+      ${t.flag?`<span class="tier__flag">${esc(t.flag)}</span>`:''}
+      <h3 class="tier__n">${esc(t.name)}</h3>
+      <p class="tier__left">${esc(t.left)}</p>
+    </div>
+    <div class="tier__buy">
+      <div class="tier__p">${t.price}<sup>lei</sup></div>
+      <div class="qtyrow">
+        <div class="qty">
+          <button data-step="-1" data-tier="${t.id}" aria-label="Unul mai puțin">−</button>
+          <span id="q-${t.id}">1</span>
+          <button data-step="1" data-tier="${t.id}" aria-label="Încă unul">+</button>
+        </div>
+        <button class="btn btn--espresso" data-buy="${t.id}">Adaugă în coș</button>
+      </div>
+    </div>
+  </article>`).join('');
+
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-step]');
+  if(s){
+    const id=s.dataset.tier;
+    if(id in CART){ CART[id]=Math.min(20,Math.max(1,CART[id]+ +s.dataset.step)); renderCart(); }
+    else { qty[id]=Math.min(20,Math.max(1,qty[id]+ +s.dataset.step)); $('#q-'+id).textContent=qty[id]; }
+    return;
+  }
+  const b=e.target.closest('[data-buy]');
+  if(b){
+    const t=TIERS.find(x=>x.id===b.dataset.buy);
+    CART[t.id]=(CART[t.id]||0)+qty[t.id];
+    renderCart(); openCart();
+    toast('Adăugat în coș', `${qty[t.id]} × ${t.name}`);
+    qty[t.id]=1; $('#q-'+t.id).textContent=1;
+  }
+  const rm=e.target.closest('[data-cart-remove]');
+  if(rm){ delete CART[rm.dataset.cartRemove]; renderCart(); }
+  if(e.target.closest('[data-cart-close]')) closeCart();
+});
+let serial=148;
+
+/* ── cart ── */
+const CART={};
+const cartEl=$('#cart');
+function openCart(){ cartEl.classList.add('is-open'); cartEl.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+function closeCart(){ cartEl.classList.remove('is-open'); cartEl.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+$('#cartOpen').onclick=openCart;
+
+function cartLines(){
+  return Object.entries(CART).map(([id,n])=>({ t:TIERS.find(x=>x.id===id), n }));
+}
+function renderCart(){
+  const lines=cartLines();
+  const count=lines.reduce((a,l)=>a+l.n,0);
+  const total=lines.reduce((a,l)=>a+l.n*l.t.price,0);
+  const badge=$('#cartCount');
+  badge.textContent=count; badge.hidden=count===0;
+  $('#cartFoot').hidden=count===0;
+  $('#cartTotal').textContent=total+' lei';
+  $('#cartBody').innerHTML = count ? lines.map(l=>`
+    <div class="ci">
+      <div class="ci__m">
+        <div class="ci__n">${esc(l.t.name)}</div>
+        <div class="ci__p">${l.n>1 ? `${l.n} × ${l.t.price} lei — ${l.n*l.t.price} lei` : `${l.t.price} lei`}</div>
+      </div>
+      <div class="qty">
+        <button data-step="-1" data-tier="${l.t.id}" aria-label="Unul mai puțin">−</button>
+        <span>${l.n}</span>
+        <button data-step="1" data-tier="${l.t.id}" aria-label="Încă unul">+</button>
+      </div>
+      <button class="ci__x" data-cart-remove="${l.t.id}" aria-label="Scoate din coș">✕</button>
+    </div>`).join('')
+  : `<div class="cart__empty"><h4>Coșul e gol</h4><p>Adaugă un bilet ca să continui.</p></div>`;
+}
+renderCart();
+
+$('#checkout').onclick=()=>{
+  const lines=cartLines();
+  if(!lines.length) return;
+  const total=lines.reduce((a,l)=>a+l.n*l.t.price,0);
+  lines.forEach(l=>{
+    for(let i=0;i<l.n;i++){
+      serial+=1+Math.floor(Math.random()*4);
+      USER.tickets.push({tier:l.t.name,serial:String(serial).padStart(4,'0'),qty:1});
+    }
+  });
+  Object.keys(CART).forEach(k=>delete CART[k]);
+  renderCart(); renderTickets(); closeCart(); go('account');
+  toast('Comandă finalizată');
+};
+
+/* account */
+function renderCard(){
+  $('#firstName').textContent=USER.first;
+  $('#disc').textContent=USER.initials;
+  $('#accName').textContent=USER.name;
+  $('#details').innerHTML=[['Email',USER.email],['An de studiu',USER.year]]
+    .map(([k,v])=>`<div class="idrw"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
+}
+renderCard();
+
+/* edit dialog */
+const modal=$('#edit');
+function openEdit(){
+  $('#f-name').value=USER.name; $('#f-mail').value=USER.email;
+  $('#f-phone').value=USER.phone; $('#f-year').value=USER.year;
+  modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden'; $('#f-name').focus();
+}
+function closeEdit(){
+  modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+$('#editOpen').onclick=openEdit;
+$('#editClose').onclick=closeEdit;
+$('#editCancel').onclick=closeEdit;
+modal.addEventListener('click',e=>{ if(e.target===modal) closeEdit(); });
+$('#editSave').onclick=()=>{
+  const n=$('#f-name').value.trim(), m=$('#f-mail').value.trim();
+  if(!n) return toast('Lipsește numele','Completează numele complet.');
+  if(!m.includes('@')) return toast('Verifică emailul','Deocamdată nu pare o adresă validă.');
+  USER.name=n; USER.email=m;
+  USER.phone=$('#f-phone').value.trim();
+  USER.year=$('#f-year').value;
+  USER.first=n.split(' ')[0];
+  USER.initials=n.split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+  renderCard(); closeEdit();
+  toast('Salvat','Datele contului au fost actualizate.');
+};
+
+function renderTickets(){
+  const box=$('#myTickets');
+  box.innerHTML = USER.tickets.length ? USER.tickets.map(t=>`
+    <div class="stub">
+      <div class="stub__stripe"></div>
+      <div class="stub__m">
+        <div class="stub__k">Balul Bobocilor · FII</div>
+        <div class="stub__n">${esc(t.tier)}</div>
+        <div class="stub__d">Vineri, 20 noiembrie 2026, ora 19:00 · Palas Congress Hall<br>${t.qty===1?'Pentru o persoană':'Pentru '+t.qty+' persoane'}</div>
+      </div>
+      <div class="stub__r"><div class="stub__no">Nr.<b>${esc(t.serial)}</b>2026</div></div>
+    </div>`).join('')
+  : `<div class="empty"><h3>Încă niciun bilet</h3>
+      <p>Cumpără unul și apare aici, numerotat și pe numele tău.</p>
+      <a href="#" class="btn btn--espresso" data-go="tickets">Alege un bilet</a></div>`;
+}
+renderTickets();
+
+/* toast */
+let tt;
+function toast(k,v){
+  $('#toastK').textContent=k;
+  $('#toastV').textContent=v||'';
+  $('#toastV').hidden=!v;
+  $('#toast').classList.toggle('toast--solo',!v);
+  $('#toast').classList.add('is-on');
+  clearTimeout(tt); tt=setTimeout(()=>$('#toast').classList.remove('is-on'),4000);
+}
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+function observe(){ $$('.up:not(.in)').forEach(el=>io.observe(el)); }
+observe();
+</script>
+</body>
+</html>
